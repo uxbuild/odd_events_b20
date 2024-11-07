@@ -75,8 +75,12 @@ function render() {
   renderState(outputBank, state.bank);
   renderState(outputEvens, state.evens);
   renderState(outputOdds, state.odds);
+  clearInput();
 }
 
+function clearInput(){
+  inputNum.value = "";
+}
 function renderState(output, stateArr) {
   const arrStr = stateArr.toString();
   output.innerHTML = arrStr;
@@ -95,7 +99,24 @@ btnAddRandom.addEventListener("click", function (e) {
 
 /* parse input field, allows for comma-delimited list of numbers. */
 function parseInput(){
-
+  // parse input
+  const arr = inputNum.value.split(",");
+  // must allow for strings in input field.. remove validation?
+  // 
 }
+
+
+const keysAllowed = ["Enter", "Tab", "Backspace", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Comma"];
+/* prevent keys other than integers, comma, and backspace */
+inputNum.addEventListener("keydown", (e)=>{
+  const code = e.code;
+  console.log(`keycode: ${e.code}`);
+  
+  if(keysAllowed.indexOf(code)==-1){
+    e.preventDefault();
+    e.stopPropagation();
+  }
+});
+
 
 
