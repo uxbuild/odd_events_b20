@@ -83,15 +83,31 @@ function sortAll() {
 function sortNum(n) {
   if (n % 2 == 0) {
     state.evens.push(n);
-    sortAscending(state.evens);
+    sortOrder(state.evens);
   } else {
     state.odds.push(n);
-    sortAscending(state.odds);
+    sortOrder(state.odds);
   }
 }
 
-function sortAscending(stateList){
-  stateList.sort();
+const selectOrder = document.querySelector("#select-order");
+function sortOrder(stateList) {
+  const order = selectOrder.value;
+  if (stateList.length > 1) {
+    switch (order) {
+      case "sortA":
+        stateList.sort();
+        break;
+      case "sortD":
+        stateList.sort((a, b) => {
+          return b - a;
+        });
+
+        break;
+      default:
+        stateList.sort();
+    }
+  }
 }
 
 function render() {
