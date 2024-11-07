@@ -1,6 +1,5 @@
 // TODO: this file! :)
 
-
 /* STATE */
 const state = {
   bank: [],
@@ -17,24 +16,27 @@ const outputBank = document.querySelector("#numberBank output");
 const outputOdds = document.querySelector("#odds output");
 const outputEvens = document.querySelector("#evens output");
 
+/* extension */
+const btnAddRandom = document.querySelector("#btn-random");
+const inputNum = document.querySelector("#number");
+
 /* EVENT LISTENERS */
 frmAddNum.addEventListener("submit", function (e) {
   //do something..
+  // console.log("submit form");
   e.preventDefault();
-  console.log("submit form");
   const numStr = e.target.elements["number"].value;
-  console.log(`number: ${numStr}`);
-  addToBank(parseInt(numStr));
+  if (!isNaN(parseInt(numStr))) addToBank(parseInt(numStr));
 });
 
 btnSortOne.addEventListener("click", function (e) {
   sortOne();
 });
 
-btnSortAll.addEventListener("click", function(e){
-    console.log("sortAll button clicked..");
-    sortAll();
-})
+btnSortAll.addEventListener("click", function (e) {
+  console.log("sortAll button clicked..");
+  sortAll();
+});
 
 /* FUNCTIONS */
 
@@ -61,12 +63,12 @@ function sortAll() {
   render();
 }
 
-function sortNum(n){
-    if(n%2==0){
-        state.evens.push(n);
-    }else{
-        state.odds.push(n);
-    }
+function sortNum(n) {
+  if (n % 2 == 0) {
+    state.evens.push(n);
+  } else {
+    state.odds.push(n);
+  }
 }
 
 function render() {
@@ -79,3 +81,14 @@ function renderState(output, stateArr) {
   const arrStr = stateArr.toString();
   output.innerHTML = arrStr;
 }
+
+/* WORKSHOP EXTENSION */
+
+function getRandomNum(range) {
+  const num = Math.floor(Math.random() * range);
+  return num;
+}
+
+btnAddRandom.addEventListener("click", function (e) {
+  addToBank(getRandomNum(1000));
+});
