@@ -92,3 +92,10 @@ function getRandomNum(range) {
 btnAddRandom.addEventListener("click", function (e) {
   addToBank(getRandomNum(1000));
 });
+
+/* parse input field, allows for comma-delimited list of numbers. */
+function parseInput(){
+
+}
+
+
