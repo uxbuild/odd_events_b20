@@ -22,58 +22,63 @@
     <script defer src="index.js"></script>
   </head>
   <body>
-    <h1>Odds and Events</h1>
-    <form id="frm-number">
-      <label>
-        Add a Number to the Bank
-        <input id="number" name="number" type="text" />
-      </label>
-      <button type="submit" id="btn-number">Add Number(s)</button>
-      <button type="button" id="btn-random">Add Random Number</button>
-    </form>
-    <main>
-      <section id="numberBank">
-        <h2>Number Bank</h2>
-        <output></output>
-        <div>
-          <button id="sortOne">Sort First</button>
-          <button id="sortAll">Sort All</button>
-        </div>
-        <div>
-          <label for="cars">Select sort order:</label>
 
-          <select name="select-order" id="select-order">
-            <option value="sortA">Ascending</option>
-            <option value="sortD">Descending</option>
-          </select> 
-        </div>
-        <div>
-          <label for="">Select how many to sort:</label>
-          <span id="lbl-how-many">5</span>
-          <div style="width: 15em">
-            <label id="lbl-slider" for="slider" class="form-label"></label>
-            <input
-            type="range"
-            class="form-range"
-            min="0"
-            max="5"
-            id="slider"
-            />
-            <button id="btn-how-many">Sort Selection</button>
+    <!-- bootstrap -->
+    <div class="container">
+
+      <h1>Odds and Events</h1>
+      <form id="frm-number">
+        <label>
+          Add a Number to the Bank
+          <input class="form-control" id="number" name="number" type="text" />
+        </label>
+        <button class="btn btn-primary" type="submit" id="btn-number">Add Number(s)</button>
+        <button class="btn btn-primary" type="button" id="btn-random">Add Random</button>
+      </form>
+      <main>
+        <section id="numberBank">
+          <h4>Number Bank</h4>
+          <output></output>
+          <div>
+            <button class="btn btn-primary" id="sortOne">Sort First</button>
+            <button class="btn btn-primary" id="sortAll">Sort All</button>
           </div>
-        </div>
-      </section>
-      <section id="sortedNumbers">
-        <h2>Sorted Numbers</h2>
-        <section id="odds">
-          <h3>Odds</h3>
-          <output></output>
+          <div>
+            <label class="form-label" for="select-order">Select sort order:</label>
+  
+            <select class="form-select" aria-label="Default select example" name="select-order" id="select-order">
+              <option value="sortA">Ascending</option>
+              <option value="sortD">Descending</option>
+            </select> 
+          </div>
+          <div>
+            <label class="form-label" for="">Select how many to sort:</label>
+            <span id="lbl-how-many">5</span>
+            <div style="width: 15em">
+              <label id="lbl-slider" for="slider" class="form-label"></label>
+              <input
+              type="range"
+              class="form-range"
+              min="0"
+              max="5"
+              id="slider"
+              />
+              <button class="btn btn-primary" id="btn-how-many">Sort Selection</button>
+            </div>
+          </div>
         </section>
-        <section id="evens">
-          <h3>Evens</h3>
-          <output></output>
+        <section id="sortedNumbers">
+          <h3>Sorted Numbers</h3>
+          <section id="odds">
+            <h5>Odds</h5>
+            <output></output>
+          </section>
+          <section id="evens">
+            <h5>Evens</h5>
+            <output></output>
+          </section>
         </section>
-      </section>
-    </main>
+      </main>
+    </div>
   </body>
 </html>
