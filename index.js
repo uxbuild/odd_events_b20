@@ -15,6 +15,10 @@ const btnSortAll = document.querySelector("#sortAll");
 const outputBank = document.querySelector("#numberBank output");
 const outputOdds = document.querySelector("#odds output");
 const outputEvens = document.querySelector("#evens output");
+const inputHowMany = document.querySelector("#input-how-many");
+const btnHowMany = document.querySelector("#btn-how-many");
+const lblHowMany = document.querySelector("#lbl-how-many");
+const slider = document.querySelector("#slider");
 
 /* extension */
 const btnAddRandom = document.querySelector("#btn-random");
@@ -47,15 +51,15 @@ function addToBank(num) {
 }
 
 /* add list of nums from bank */
-function addAllToBank(){
-// list of nums
-console.log('addAllToBank..');
+function addAllToBank() {
+  // list of nums
+  console.log("addAllToBank..");
 
-const nums = inputNum.value.split(",").filter(n=>n!=="");
-console.log(`nums: ${nums}`);
-state.bank = [...state.bank, ...nums]; 
-console.log(`state.bank: ${state.bank}`);
-render();
+  const nums = inputNum.value.split(",").filter((n) => n !== "");
+  console.log(`nums: ${nums}`);
+  state.bank = [...state.bank, ...nums];
+  console.log(`state.bank: ${state.bank}`);
+  render();
 }
 
 function sortOne() {
@@ -88,10 +92,23 @@ function render() {
   renderState(outputBank, state.bank);
   renderState(outputEvens, state.evens);
   renderState(outputOdds, state.odds);
+  updateRangeSelector();
   clearInput();
 }
 
-function clearInput(){
+function updateRangeSelector() {
+  if (state.bank.length > 0) {
+    slider.min = 0;
+    slider.max = state.bank.length;
+  } else {
+    slider.min = 0;
+    slider.max = 0;
+  }
+  slider.value = slider.max;
+  lblHowMany.innerHTML = slider.max;
+}
+
+function clearInput() {
   inputNum.value = "";
 }
 function renderState(output, stateArr) {
@@ -111,25 +128,56 @@ btnAddRandom.addEventListener("click", function (e) {
 });
 
 /* parse input field, allows for comma-delimited list of numbers. */
-function parseInput(){
+function parseInput() {
   // parse input
   const arr = inputNum.value.split(",");
   // must allow for strings in input field.. remove validation?
-  // 
+  //
 }
 
-
-const keysAllowed = ["Enter", "Tab", "Backspace", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Comma"];
+const keysAllowed = [
+  "Enter",
+  "Tab",
+  "Backspace",
+  "Digit1",
+  "Digit2",
+  "Digit3",
+  "Digit4",
+  "Digit5",
+  "Digit6",
+  "Digit7",
+  "Digit8",
+  "Digit9",
+  "Digit0",
+  "Comma",
+];
 /* prevent keys other than integers, comma, and backspace */
-inputNum.addEventListener("keydown", (e)=>{
+inputNum.addEventListener("keydown", (e) => {
   const code = e.code;
   // console.log(`keycode: ${e.code}`);
-  
-  if(keysAllowed.indexOf(code)==-1){
+
+  if (keysAllowed.indexOf(code) == -1) {
     e.preventDefault();
     e.stopPropagation();
   }
 });
 
+console.log(`slider: ${slider}`);
 
+slider.addEventListener("change", function (e) {
+  console.log(`slider change..`);
+  console.log(e.target.value);
+  lblHowMany.innerHTML = e.target.value;
+});
 
+btnHowMany.addEventListener("click", function (e) {
+  sortHowMany();
+});
+
+function sortHowMany() {
+  // get how many..
+  const num = slider.value;
+  for (let i = 0; i < num; i++) {
+    sortOne();
+  }
+}
