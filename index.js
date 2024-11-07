@@ -26,7 +26,8 @@ frmAddNum.addEventListener("submit", function (e) {
   // console.log("submit form");
   e.preventDefault();
   const numStr = e.target.elements["number"].value;
-  if (!isNaN(parseInt(numStr))) addToBank(parseInt(numStr));
+  // if (!isNaN(parseInt(numStr))) addToBank(parseInt(numStr));
+  if (!isNaN(parseInt(numStr))) addAllToBank();
 });
 
 btnSortOne.addEventListener("click", function (e) {
@@ -43,6 +44,18 @@ btnSortAll.addEventListener("click", function (e) {
 function addToBank(num) {
   state.bank.push(num);
   render();
+}
+
+/* add list of nums from bank */
+function addAllToBank(){
+// list of nums
+console.log('addAllToBank..');
+
+const nums = inputNum.value.split(",").filter(n=>n!=="");
+console.log(`nums: ${nums}`);
+state.bank = [...state.bank, ...nums]; 
+console.log(`state.bank: ${state.bank}`);
+render();
 }
 
 function sortOne() {
@@ -110,7 +123,7 @@ const keysAllowed = ["Enter", "Tab", "Backspace", "Digit1", "Digit2", "Digit3", 
 /* prevent keys other than integers, comma, and backspace */
 inputNum.addEventListener("keydown", (e)=>{
   const code = e.code;
-  console.log(`keycode: ${e.code}`);
+  // console.log(`keycode: ${e.code}`);
   
   if(keysAllowed.indexOf(code)==-1){
     e.preventDefault();
