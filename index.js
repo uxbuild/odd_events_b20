@@ -68,8 +68,8 @@ function sortOne() {
     sortNum(num);
     console.log(`state.bank: ${state.bank}`);
     console.log(`state.evens: ${state.evens}`);
+    render();
   }
-  render();
 }
 
 function sortAll() {
@@ -83,9 +83,15 @@ function sortAll() {
 function sortNum(n) {
   if (n % 2 == 0) {
     state.evens.push(n);
+    sortAscending(state.evens);
   } else {
     state.odds.push(n);
+    sortAscending(state.odds);
   }
+}
+
+function sortAscending(stateList){
+  stateList.sort();
 }
 
 function render() {
