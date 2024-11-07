@@ -13,3 +13,23 @@ output {
 button {
   margin: .5em;
 }
+
+output {
+  padding: 1em;
+  background-color: white;
+}
+
+#numberBank h4 {
+  padding: 0em 0em 0em .5em;
+}
+
+#sortedNumbers {
+  padding: 2em;
+  background-color: aliceblue;
+}
+
+#numberBank {
+  background-color:rgb(187, 222, 250);
+  padding: 2em;
+}
+
